@@ -1,0 +1,27 @@
+@import "size";
+
+@media screen and (min-width: 640px) and (max-width: 1024px) {
+    h1 {
+        color: rgb(38, 65, 87);
+        text-decoration: underline;
+    }
+}
+
+@media screen and (min-width: 1025px) {
+    h1 {
+        color: #2d553a;
+        text-decoration: none;
+    }
+}
+
+article {
+    @include size(small) {
+        column-count: 1;
+    }
+    @include size(medium) {
+        column-count: 2;
+    }
+    @include size(large) {
+        column-count: 3;
+    }
+}
