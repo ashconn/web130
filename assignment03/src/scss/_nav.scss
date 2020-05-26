@@ -1,0 +1,96 @@
+@import 'colors';
+@import 'size';
+
+nav {
+    ul {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        background-color: $light-blue;
+        // remove list styles
+        list-style-type: none;
+        padding-inline-start: 0;
+        margin: 0;
+        @include size(sm) {
+            flex-direction: column;
+            }
+        // ul.submenu
+        &.submenu {
+            a {
+                @include size(sm) {
+                    border-bottom: none;
+                }
+            }
+            @include size(md) {
+                position: absolute;
+                width: 100%;
+                left: 0;
+                border: 2px solid white;
+                border-left: none;
+            }
+            @include size(lg) {
+                position: absolute;
+                flex-direction: column;
+                border: 2px solid white;
+                border-top: none;
+            }
+        }
+    }
+    li {
+        position: relative;
+        display: block;
+        @include size(md) {
+            flex-grow: 1;
+            position: static;
+        }
+        a {
+            display: block;
+            text-align: center;
+            text-decoration: none;
+            color: white;
+            padding: 15px;
+            @include size(lg) {
+                text-align: left;
+            }
+        }
+        a#home {
+            @include size(sm) {
+                border-bottom: 2px solid white;
+            }
+        }
+        a#home, a#contact {
+            @include size(sm) {
+                border-top: 2px solid white;
+            }
+        }
+        a#products {
+            border-left: 2px solid white;
+            border-right: 2px solid white;
+            @include size(sm) {
+                border-left: none;
+                border-right: none;
+                border-bottom: 2px solid white;
+            }
+        }
+        #products.on {
+            background-color: $dark-blue;
+            @include size(sm) {
+                background-color: $light-blue;
+            }
+        }
+        .menu-icon {
+            display: block;
+            float: left;
+            width: 34px;
+            margin-right: -34px;
+            height: 22px;
+            background-image: url("/img/Hamburger.png");
+            &.open {
+                    height: 27px;
+                    width: 27px;
+                    margin-right: -27px;
+                    background-image: url("/img/X-Icon.png");
+            }
+        }
+    } 
+}
