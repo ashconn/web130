@@ -120,9 +120,10 @@ function postArticle(req, res) {
     } else {
         res.end(JSON.stringify({
             status: 'ERROR',
-            message: 'Invalid credentials'
+            message: 'Invalid credentials.'
         }))
     }
+
 }
 
 exports.postLogin = postLogin

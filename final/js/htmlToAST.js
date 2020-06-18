@@ -7,6 +7,7 @@ const DOMParser = new JSDOM().window.DOMParser
  * 
  * @param {HTML} html string, e.g. `<p>hi there</p>`
  */
+
 const htmlToAST = html => {
     const parsed = new DOMParser().parseFromString(html, 'text/html')
     const AST = deserialize(parsed.body)
@@ -63,21 +64,17 @@ const deserialize = el => {
     const children = Array.from(parent.childNodes)
         .map(deserialize)
         .flat()
-
     if (el.nodeName === 'BODY') {
         return jsx('fragment', {}, children)
     }
-
     if (ELEMENT_TAGS[nodeName]) {
         const attrs = ELEMENT_TAGS[nodeName](el)
         return jsx('element', attrs, children)
     }
-
     if (TEXT_TAGS[nodeName]) {
         const attrs = TEXT_TAGS[nodeName](el)
         return children.map(child => jsx('text', attrs, child))
     }
-
     return children
 }
 

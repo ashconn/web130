@@ -1,19 +1,20 @@
 import * as $ from 'jquery'
+
 import { Category } from './categories'
 import { getArticles } from './articles'
 import { renderLoginForm, logout } from './loginForm'
 import { renderArticleForm } from './articleForm'
 
 export function renderNav() {
-    // Home Links
+    // Home links
     $('a[href="#Home"]').on('click', function() {
         getArticles()
     })
 
-    // Category Links
+    // Category links
     renderCategoryDropdown()
 
-    // Editor Links
+    // Editor links
     $('a[href="#Login"]').on('click', function() {
         renderLoginForm()
     })
@@ -24,14 +25,14 @@ export function renderNav() {
         renderArticleForm()
     })
 
-    // Only applies to Bootstrap navbar, appearance only.
+    // Only applies to Bootstrap navbar. For looks only.
     $('.nav-link').on('click', function(event) {
         $('.nav-link').removeClass('active')
         const thisNavItem = $(event.target)
         thisNavItem.addClass('active')
     })
 
-    // Render login user nav if token is set
+    // Render logged in user nav if token is set
     if (sessionStorage.getItem('token')) {
         $('.auth-user').css('display', 'block')
         $('.user').css('display', 'none')
@@ -41,10 +42,12 @@ export function renderNav() {
 function renderCategoryDropdown() {
     const categoryMenuItems = $('#category-menu-items')
     for (const category of Object.keys(Category)) {
-        const categoryItemHTML = `
+        const categoryItemHtml = `
             <a class="dropdown-item" href="#${category}">${category}</a>
         `
-        categoryMenuItems.append(categoryItemHTML)
+        // category = "World"
+        // <a class="dropdown-item" href="#World">World</a>
+        categoryMenuItems.append(categoryItemHtml)
     }
 
     categoryMenuItems.find('a').on('click', function(event) {

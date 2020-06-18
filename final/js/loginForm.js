@@ -89,5 +89,6 @@ export function renderLoginForm() {
                 content.prepend(alertHtml)
             }
         })
+        // redirect to the article edit page.
     })
 }

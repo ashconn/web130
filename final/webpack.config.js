@@ -1,5 +1,5 @@
 const path = require('path')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin')
 const { postLogin, postArticle } = require('./js/api')
 const express = require('express')
 
@@ -13,16 +13,15 @@ module.exports = {
         rules: [
             {
                 test: /\.s[ac]ss$/i,   // .scss or .sass
-                use: [
-                    MiniCssExtractPlugin.loader,
+                loader: ExtractTextWebpackPlugin.extract([
                     'css-loader',
                     'sass-loader'
-                ]
+                ])
             }
         ]
     },
     plugins: [
-        new MiniCssExtractPlugin({
+        new ExtractTextWebpackPlugin({
             filename: '[name].css',
             allChunks: true
         })
